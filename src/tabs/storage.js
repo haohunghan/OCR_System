@@ -1,10 +1,21 @@
-import {Text, View} from 'react-native';
 import * as React from 'react';
+import createStackNavigator from '@react-navigation/stack/src/navigators/createStackNavigator';
 
-export default function Storage() {
+import StorageDetailScreen from '../screen/storage/StorageDetailScreen';
+import StorageScreen from '../screen/storage/StorageScreen';
+
+const StorageStack = createStackNavigator();
+
+function orders() {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Storage</Text>
-    </View>
+    <StorageStack.Navigator>
+      <StorageStack.Screen name="Storage" component={StorageScreen} />
+      <StorageStack.Screen
+        name="StorageDetail"
+        component={StorageDetailScreen}
+      />
+    </StorageStack.Navigator>
   );
 }
+
+export default orders;

@@ -1,10 +1,18 @@
-import {Text, View} from 'react-native';
 import * as React from 'react';
+import createStackNavigator from '@react-navigation/stack/src/navigators/createStackNavigator';
 
-export default function DashboardScreen() {
+import DashboardScreen from '../screen/dashboard/DashboardScreen';
+import Test from '../screen/dashboard/Test';
+
+const DashboardStack = createStackNavigator();
+
+function dashboard() {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Dashboard</Text>
-    </View>
+    <DashboardStack.Navigator>
+      <DashboardStack.Screen name="Dashboard" component={DashboardScreen} />
+      <DashboardStack.Screen name="Test" component={Test} />
+    </DashboardStack.Navigator>
   );
 }
+
+export default dashboard;

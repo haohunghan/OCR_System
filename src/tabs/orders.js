@@ -1,10 +1,18 @@
-import {Text, View} from 'react-native';
 import * as React from 'react';
+import createStackNavigator from '@react-navigation/stack/src/navigators/createStackNavigator';
 
-export default function Orders() {
+import OrderDetailScreen from '../screen/orders/OrderDetailScreen';
+import OrdersScreen from '../screen/orders/OrdersScreen';
+
+const OrdersStack = createStackNavigator();
+
+function orders() {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Statistical</Text>
-    </View>
+    <OrdersStack.Navigator>
+      <OrdersStack.Screen name="Orders" component={OrdersScreen} />
+      <OrdersStack.Screen name="OrderDetail" component={OrderDetailScreen} />
+    </OrdersStack.Navigator>
   );
 }
+
+export default orders;

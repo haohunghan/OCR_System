@@ -1,10 +1,21 @@
-import {Text, View} from 'react-native';
 import * as React from 'react';
+import createStackNavigator from '@react-navigation/stack/src/navigators/createStackNavigator';
 
-export default function Products() {
+import ProductDetailScreen from '../screen/products/ProductDetailScreen';
+import ProductsScreen from '../screen/products/ProductsScreen';
+
+const ProductsStack = createStackNavigator();
+
+function products() {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Products</Text>
-    </View>
+    <ProductsStack.Navigator>
+      <ProductsStack.Screen name="Products" component={ProductsScreen} />
+      <ProductsStack.Screen
+        name="ProductDetail"
+        component={ProductDetailScreen}
+      />
+    </ProductsStack.Navigator>
   );
 }
+
+export default products;

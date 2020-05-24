@@ -23,10 +23,15 @@ export default function App() {
               iconName = focused
                 ? 'ios-information-circle'
                 : 'ios-information-circle-outline';
+            } else if (route.name === 'Orders') {
+              iconName = focused ? 'md-list-box' : 'md-list';
+            } else if (route.name === 'Products') {
+              iconName = focused ? 'chart-line-stacked' : 'chart-line';
+            } else if (route.name === 'Storage') {
+              iconName = focused ? 'chart-line-stacked' : 'chart-line';
             } else {
               iconName = focused ? 'ios-list-box' : 'ios-list';
             }
-            //(route.name === 'Settings') {
 
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
