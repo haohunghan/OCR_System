@@ -20,15 +20,13 @@ export default function App() {
             let iconName;
 
             if (route.name === 'Dashboard') {
-              iconName = focused
-                ? 'ios-information-circle'
-                : 'ios-information-circle-outline';
+              iconName = focused ? 'ios-home' : 'ios-home';
             } else if (route.name === 'Orders') {
-              iconName = focused ? 'md-list-box' : 'md-list';
+              iconName = focused ? 'md-clipboard' : 'md-clipboard';
             } else if (route.name === 'Products') {
-              iconName = focused ? 'chart-line-stacked' : 'chart-line';
+              iconName = focused ? 'ios-cube' : 'ios-cube';
             } else if (route.name === 'Storage') {
-              iconName = focused ? 'chart-line-stacked' : 'chart-line';
+              iconName = focused ? 'ios-archive' : 'ios-archive';
             } else {
               iconName = focused ? 'ios-list-box' : 'ios-list';
             }
