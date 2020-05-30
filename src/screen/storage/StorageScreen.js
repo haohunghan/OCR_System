@@ -5,11 +5,11 @@ import * as React from 'react';
 const storages = [
   {
     name: 'Kho hang loi',
-    id: 'loi',
+    id: '1',
   },
   {
     name: 'Nguyen Tri Phuong',
-    id: 'ntp',
+    id: '2',
   },
 ];
 
