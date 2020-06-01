@@ -1,4 +1,4 @@
-import {Text, View} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
 import * as React from 'react';
 import {ButtonGroup, Button} from 'react-native-elements';
 
@@ -6,15 +6,15 @@ function getList(id) {
   const storageDatas =
     id === 1
       ? {
-          name: 'Kho hang abc Panh',
-          description: 'kho hang dau tien',
+          name: 'Kho Hàng của Panh xinh Gái',
+          description: 'Kho Hàng thứ 1',
           phoneNumber: '123566',
           address: '19 Nguyen Huu Tho',
         }
       : {
-          name: 'Kho hang abc Hao',
-          description: 'kho hang thu hai',
-          phoneNumber: '000000',
+          name: 'Kho hàng của Hào Béo',
+          description: 'Kho Hàng Thứ 2',
+          phoneNumber: '098xxxx',
           address: '65 Nam Ky Khoi Nghia',
         };
 
@@ -28,29 +28,60 @@ export default function StorageDetailScreen({route, navigation}) {
 
   return (
     <View>
-      <Text>{storageData.name}</Text>
-      <Text>{storageData.description}</Text>
-      <Text>{storageData.phoneNumber}</Text>
-      <Text>{storageData.address}</Text>
+      <Text style={styles.contain}>{storageData.name}</Text>
+      <Text style={styles.contain}>{storageData.description}</Text>
+      <Text style={styles.contain}>{storageData.phoneNumber}</Text>
+      <Text style={styles.contain}>{storageData.address}</Text>
 
-      <View style={{flexDirection: 'row'}}>
-        <Button
-          title="View import"
-          onPress={() => {
-            navigation.navigate('StorageImport', {
-              storageId: storageId,
-            });
-          }}
-        />
-        <Button
-          title="View export"
-          onPress={() => {
-            navigation.navigate('StorageExport', {
-              storageId: storageId,
-            });
-          }}
-        />
+      <View
+        style={{
+          flexDirection: 'row',
+          marginTop: 40,
+          marginLeft: 16,
+        }}>
+        <View style={styles.import}>
+          <Button
+            title="View Import"
+            onPress={() => {
+              navigation.navigate('StorageImport', {
+                storageId: storageId,
+              });
+            }}
+          />
+        </View>
+
+        <View style={styles.export}>
+          <Button
+            title="View Export"
+            onPress={() => {
+              navigation.navigate('StorageExport', {
+                storageId: storageId,
+              });
+            }}
+          />
+        </View>
       </View>
     </View>
   );
 }
+const styles = StyleSheet.create({
+  import: {
+    paddingRight: 20,
+    width: 200,
+    borderRadius: 25,
+  },
+
+  export: {
+    paddingRight: 20,
+    width: 200,
+  },
+  contain: {
+    marginTop: 20,
+    fontSize: 22,
+    paddingLeft: 10,
+    borderBottomWidth: 2,
+    borderBottomColor: 'grey',
+    width: 375,
+    marginLeft: 20,
+  },
+});

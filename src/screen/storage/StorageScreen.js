@@ -1,33 +1,45 @@
 import {ListItem} from 'react-native-elements';
-import {Text, View} from 'react-native';
+import {Text, View, StyleSheet,} from 'react-native';
 import * as React from 'react';
 
 const storages = [
   {
-    name: 'Kho hang loi',
+    name: 'Kho hàng lỗi',
     id: '1',
   },
   {
-    name: 'Nguyen Tri Phuong',
+    name: 'Nguyễn Tri Phương',
     id: '2',
   },
 ];
 
 export default function StorageScreen({navigation}) {
   return (
-    <View>
+    <View style={styles.ContainerBtn}>
       {storages.map((storage, index) => (
         <ListItem
+          style={styles.Btn}
           key={index}
           title={storage.name}
-          bottomDivider
           onPress={() => {
-            navigation.navigate('StorageDetail', {
-              storageId: storage.id,
-            });
+            navigation.navigate('StorageDetail', {storageId: storage.id});
           }}
         />
       ))}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  ContainerBtn: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  Btn: {
+    marginTop: 30,
+    marginLeft: 20,
+    width: 370,
+    borderRadius: 25,
+  },
+});
