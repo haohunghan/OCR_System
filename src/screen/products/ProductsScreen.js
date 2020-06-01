@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import {Button} from 'react-native-elements';
 
 function getCategories() {
   const categories = [
@@ -77,34 +78,67 @@ function getTags() {
   return responseTags;
 }
 
-function filterItems() {
-  return;
-}
-
-export default function ProductScreen() {
+function initFilterItem() {
   const categories = getCategories();
   const brands = getBrands();
   const tags = getTags();
+  const filteredItem = {};
+
+  filteredItem.categories = categories;
+  filteredItem.brands = brands;
+  filteredItem.tags = tags;
+
+  return filteredItem;
+}
+
+function initSelectedFilterItem(filteredItem) {
+  let selectedFilterItem = {};
+
+  selectedFilterItem.category = filteredItem.categories[0]
+    ? filteredItem.categories[0]
+    : '';
+
+  selectedFilterItem.brand = filteredItem.brands[0]
+    ? filteredItem.brands[0]
+    : '';
+
+  selectedFilterItem.tag = filteredItem.tags[0] ? filteredItem.tags[0] : '';
+
+  return selectedFilterItem;
+}
+
+export default function ProductScreen({navigation}) {
+  const filteredItem = initFilterItem();
+  var selectedFilterItem = initSelectedFilterItem(filteredItem);
 
   return (
     <View>
       <DropDownPicker
-        items={categories}
+        items={filteredItem.categories}
         defaultIndex={0}
         containerStyle={{height: 40}}
-        onChangeItem={(item) => console.log(item.label, item.value)}
+        onChangeItem={(item) => (selectedFilterItem.category = item.label)}
       />
       <DropDownPicker
-        items={brands}
+        items={filteredItem.brands}
         defaultIndex={0}
         containerStyle={{height: 40}}
-        onChangeItem={(item) => console.log(item.label, item.value)}
+        onChangeItem={(item) => (selectedFilterItem.brand = item.label)}
       />
       <DropDownPicker
-        items={tags}
+        items={filteredItem.tags}
         defaultIndex={0}
         containerStyle={{height: 40}}
-        onChangeItem={(item) => console.log(item.label, item.value)}
+        onChangeItem={(item) => (selectedFilterItem.tag = item.label)}
+      />
+
+      <Button
+        title="View import"
+        onPress={() => {
+          navigation.navigate('ProductDetail', {
+            selectedFilterItem: selectedFilterItem,
+          });
+        }}
       />
     </View>
   );
