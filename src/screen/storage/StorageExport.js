@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {ListItem} from 'react-native-elements';
-import {View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 function getList() {
   const exportData = [
@@ -28,9 +28,10 @@ export default function StorageExport({route}) {
   const exportData = getList();
 
   return (
-    <View>
+    <View style={styles.ContainerExport}>
       {exportData.map((data, index) => (
         <ListItem
+          style={styles.Export}
           key={index}
           title={'Status: ' + statusChanging(data.status)}
           subtitle={'Note: ' + data.note}
@@ -40,3 +41,15 @@ export default function StorageExport({route}) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  ContainerExport: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+  },
+  Export: {
+    marginTop: 30,
+    backgroundColor: '#282828',
+  },
+});

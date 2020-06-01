@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {ListItem} from 'react-native-elements';
-import {View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 function getList() {
   const importData = [
@@ -28,9 +28,10 @@ export default function StorageImport({route}) {
   const importData = getList();
 
   return (
-    <View>
+    <View style={styles.Containerport}>
       {importData.map((data, index) => (
         <ListItem
+          style={styles.Import}
           key={index}
           title={'Status: ' + statusChanging(data.status)}
           subtitle={'Note: ' + data.note}
@@ -40,3 +41,15 @@ export default function StorageImport({route}) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  ContainerImport: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+  },
+  Import: {
+    marginTop: 30,
+    backgroundColor: '#282828',
+  },
+});
